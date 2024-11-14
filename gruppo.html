@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Thumb</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  
+    </head>
+    <style>
+        img {
+
+            width: 70px;
+
+            height: 70px;
+        }
+
+    </style>
+    <body onload="caricaDati()">
+        <h1>Tabella con informazioni gruppo</h1>
+        <div id="table"></div>
+    </body>
+    <script>
+        function caricaDati() {
+            var file = new XMLHttpRequest();
+            file.open("GET", "gruppo.json", true);
+            file.send();
+            file.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var jsonDoc = JSON.parse(file.responseText);
+                    stampatabella(jsonDoc);
+                }
+            };
+
+        }
+        function stampatabella(ogg){
+            var tabella = document.createElement("table");
+            for(let i = 0; i<ogg.gruppo.length;i++){
+                var colonne = document.createElement("tr");
+                var righe = document.createElement("td");
+                var j = document.createElement("img");
+                j.src = ogg.gruppo[i].thumb;
+                j.addEventListener("click", function() {
+
+                    localStorage.setItem("indice", i);
+
+                    console.log(i);
+
+                    window.location.href="cv.html";
+                })
+                righe.appendChild(document.createTextNode(ogg.gruppo[i].nome + ", "));
+                righe.appendChild(document.createTextNode(ogg.gruppo[i].cognome + ", "));
+                righe.appendChild(document.createTextNode(ogg.gruppo[i].ind + ", "));
+                righe.appendChild(document.createTextNode(ogg.gruppo[i].citta + ", "));
+                righe.appendChild(j);
+                
+                colonne.appendChild(righe);
+                tabella.appendChild(colonne); 
+            }
+            document.getElementById("table").appendChild(tabella);
+        }
+    </script>
+</html>
