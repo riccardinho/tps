@@ -1,8 +1,8 @@
 {
     "Immagini":[
-        {"Immagine": "http://localhost/Tucci/img/glocky.JPG"},
-        {"Immagine": "http://localhost/Tucci/img/faneto.JPG"},
-        {"Immagine": "http://localhost/Tucci/img/tonyboy.JPG"}
+        {"Immagine": "http://glocky.JPG"},
+        {"Immagine": "http://faneto.JPG"},
+        {"Immagine": "http://tonyboy.JPG"}
     ],
 
     "Nominativi": [
