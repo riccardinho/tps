@@ -1,8 +1,8 @@
 {
     "Immagini":[
-        {"Immagine": "http://glocky.JPG"},
-        {"Immagine": "http://faneto.JPG"},
-        {"Immagine": "http://tonyboy.JPG"}
+        {"Immagine": "glocky.JPG"},
+        {"Immagine": "faneto.JPG"},
+        {"Immagine": "tonyboy.JPG"}
     ],
 
     "Nominativi": [
