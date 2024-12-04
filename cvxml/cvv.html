@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Curriculum</title>
+    </head>
+    <body onload="caricadati()">
+        <h1 style="text-align: center;"> Curriculum </h1>
+        <div id="contenuto"></div>
+    </body>
+    <style>
+
+        .testoNome {
+
+            margin-top: 150px;
+
+            margin-left: 20px;
+        }
+
+        img {
+
+            width: 300px;
+
+            height: 300px;
+        }       
+
+        .divFoto {
+
+            display: flex;
+
+
+        }
+        
+    </style>
+    <script>
+        function caricadati(){
+            let indice = localStorage.getItem("indice");
+            return;
+        }
+        let i = localStorage.getItem("indice");
+        let fileJSON = "cvv"+i+".json";
+        var file = new XMLHttpRequest();
+        file.open("GET", fileJSON, true);
+        file.send();
+        file.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var jsonDoc = JSON.parse(file.responseText);
+                stampa(jsonDoc);
+            }
+        };
+
+        function stampa(ogg) {
+            let paragrafo = document.getElementById("contenuto");
+            let divPricipale = document.createElement("div");
+            let immagine = document.createElement("img");
+            let nominativo = document.createElement("p");
+            let indirizzo = document.createElement("p");
+            let contenuto = document.createElement("p");
+            divPricipale.classList.add("divFoto");
+            nominativo.classList.add("testoNome");
+            immagine.src = ogg.Immagine;
+            nominativo.appendChild(document.createTextNode(ogg.Nominativo));
+            indirizzo.appendChild(document.createTextNode(ogg.Indirizzo));
+            contenuto.appendChild(document.createTextNode(ogg.Contenuto));
+            divPricipale.appendChild(immagine);
+            divPricipale.appendChild(nominativo);
+            paragrafo.appendChild(divPricipale);
+            paragrafo.appendChild(indirizzo);
+            paragrafo.appendChild(contenuto);
+        }
+    </script>
+</html>
