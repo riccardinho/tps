@@ -46,7 +46,7 @@
                 var k = document.createElement("img");
                 k.src = ogg.gruppo[i].port;
                 k.addEventListener("click",function(){
-                    //localStorage.setItem("indice2", i);
+                    localStorage.setItem("indice2", i);
                     window.location.href="port.html";
                 })
                 righe.appendChild(document.createTextNode(ogg.gruppo[i].nome + ", "));
