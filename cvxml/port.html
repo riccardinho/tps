@@ -4,7 +4,54 @@
             Lavoro dell'utente
         </title>
     </head>
-    <body>
-        
+    <body onload="caricadati()">
+        <div id="tit">Portfolio</div>
+        <div id="port"></div>
     </body>
+    <style>
+        div{
+            align-content: center;
+            text-align: center;
+        }
+        #port{
+            font-size: 20px;
+        }
+        #tit{
+            font-size: 50px;
+        }
+    </style>
+    <script>
+        function caricadati(){
+            let indice = localStorage.getItem("indice");
+            return;
+        }
+        
+        let i = localStorage.getItem("indice2");
+        let fileport = "port"+i+".xml";
+        var file = new XMLHttpRequest();
+        file.open("GET", fileport, true);
+        file.send();
+        file.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var portDoc = file.responseXML;
+                stampa(portDoc);
+            }
+        };
+        function stampa(ogg){
+            var titolo = ogg.getElementsByTagName('titolo')[0].textContent;
+            var abstract = ogg.getElementsByTagName('abstract')[0].textContent;
+            var link = ogg.getElementsByTagName('link')[0].textContent;
+            let p = document.getElementById("port");
+            let t = document.createElement("p");
+            let a = document.createElement("p");
+            let l = document.createElement("a");
+            l.href= link;
+            t.appendChild(document.createTextNode(titolo));
+            a.appendChild(document.createTextNode(abstract));
+            l.appendChild(document.createTextNode(link));
+            p.appendChild(t);
+            p.appendChild(a);
+            p.appendChild(l);
+        }
+    </script>
 </html>
