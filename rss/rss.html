@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Feed Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #feed {
+            margin-top: 20px;
+        }
+        .feed-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ultime Notizie</h1>
+    <div id="feed">Caricamento feed...</div>
+
+    <script>
+        async function loadRSS() {
+            const url = 'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml'; // Sostituisci con il feed RSS desiderato
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    const feedContainer = document.getElementById('feed');
+                    feedContainer.innerHTML = '';
+                    
+                    data.items.forEach(item => {
+                        const feedItem = document.createElement('div');
+                        feedItem.classList.add('feed-item');
+                        feedItem.innerHTML = `<h3><a href="${item.link}" target="_blank">${item.title}</a></h3><p>${item.description}</p>`;
+                        feedContainer.appendChild(feedItem);
+                    });
+                } else {
+                    document.getElementById('feed').innerText = 'Errore nel caricamento del feed.';
+                }
+            } catch (error) {
+                document.getElementById('feed').innerText = 'Errore nel caricamento del feed.';
+                console.error('Errore:', error);
+            }
+        }
+        
+        loadRSS();
+    </script>
+</body>
+</html>
