@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post da API WordPress</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Post da API WordPress</h1>
+
+    <div class="form-group">
+        <label for="url">Inserisci URL del sito</label>
+        <input type="text" class="form-control" id="url" placeholder="Inserisci un sito web (che utilizzi l'API WordPress V2)">
+    </div>
+
+    <button class="btn btn-primary" onclick="getPosts()">Estrai Post</button>
+
+    <div id="errore"></div>
+
+    <table id="tabella" class="table table-bordered mt-4">
+    </table>
+</div>
+
+</body>
+<script src="script.js"></script>
+</html>
